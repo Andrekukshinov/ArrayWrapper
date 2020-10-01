@@ -20,9 +20,8 @@ public class ArrayWrapperApplication {
         ArrayWrapper wrapper = acquirer.getData();
         int[] res = wrapperServer.sortAscending(wrapper);
         ArrayWrapper sorted = new ArrayWrapper(res);
-        Integer[] numbersWithUniqueDigits = wrapperServer.selectNumbersWithUniqueDigits(wrapper);
+        int[] numbersWithUniqueDigits = wrapperServer.selectNumbersWithUniqueDigits(wrapper);
         DataPrinter printer = new FileDataPrinter(FilePaths.ARRAY_DATA_WRITER_FILE_PATH);
-        printer.printData(sorted);
-        printer.printNumbersWithUniqueDigits(numbersWithUniqueDigits);
+        printer.printData(sorted, numbersWithUniqueDigits);
     }
 }

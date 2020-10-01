@@ -13,10 +13,21 @@ public class ArrayWrapperProcessor {
 	   arrayToBeSorted[current] = container;
     }
     private boolean isUnique(int number) {
+       if(number < 102 || number > 987) {
+	      return false;
+	  }
 	   int hundreds = number / 100;
 	   int dozens = (number % 100) / 10;
 	   int units = (number % 10);
 	   return hundreds != dozens && hundreds != units && units != dozens;
+    }
+    private int[] convertToPrimitiveArray(List<Integer> numbersWithUniqueNumbers) {
+	   int[] result = new int[numbersWithUniqueNumbers.size()];
+	   int runner = 0;
+	   for (Integer i: numbersWithUniqueNumbers) {
+		  result[runner++] = i;
+	   }
+	   return result;
     }
 
     public int[] sortAscending(ArrayWrapper sourceWrapper) {
@@ -49,7 +60,7 @@ public class ArrayWrapperProcessor {
 	   }
 	   return arrayToBeSorted;
     }
-    public Integer[] selectNumbersWithUniqueDigits(ArrayWrapper wrapper) throws ArrayException {
+    public int[] selectNumbersWithUniqueDigits(ArrayWrapper wrapper) throws ArrayException {
 	   List<Integer> numbersWithUniqueNumbers = new ArrayList<>();
 	   for (int runner = 0; runner < wrapper.getLength(); ++runner) {
 		  int number = wrapper.getElement(runner);
@@ -57,8 +68,7 @@ public class ArrayWrapperProcessor {
 			 numbersWithUniqueNumbers.add(number);
 		  }
 	   }
-	   return numbersWithUniqueNumbers.toArray(new Integer[0]);
+	   return convertToPrimitiveArray(numbersWithUniqueNumbers);
     }
-
 
 }

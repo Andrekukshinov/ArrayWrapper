@@ -18,38 +18,28 @@ import java.util.Arrays;
 
 public class FileDataPrinterTest {
     private String readFileData(String filePath) {
-        String data = "";
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))){
-            data = reader.readLine();
+	   String data = "";
+	   StringBuilder result = new StringBuilder();
+	   try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+	       while ((data = reader.readLine()) != null)
+		  result.append(data).append("\n");
 	   } catch (IOException e) {
 		  throw new RuntimeException(e);
 	   }
-        return data;
-    }
-    @Test
-    public void testFileDataWriterShouldWriteDataToSpecifiedFile() throws IOException {
-        //given
-	   FileDataPrinter printer = new FileDataPrinter(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_PATH);
-	   ArrayWrapper wrapper = ArrayWrapperConst.WRAPPER;
-	   //when
-	   printer.printData(wrapper);
-	   //then
-	   String result = readFileData(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_PATH);
-	   Assert.assertEquals(wrapper.toString(), result);
+	   return result.toString();
     }
 
-    // TODO: 01.10.2020 fix
     @Test
-    public void testFileDataWriterShouldWriteArrayToSpecifiedFile() throws IOException, ArrayException {
-        //given
-	   FileDataPrinter printer = new FileDataPrinter(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_FOR_DIGITS_ARRAY_PATH);
+    public void testFileDataWriterShouldWriteDataToSpecifiedFile() throws IOException {
+	   //given
+	   FileDataPrinter printer = new FileDataPrinter(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_PATH);
 	   ArrayWrapper wrapper = ArrayWrapperConst.WRAPPER;
-	   ArrayWrapperProcessor wrapperProcessor = new ArrayWrapperProcessor();
-	   Integer[] processedResult = wrapperProcessor.selectNumbersWithUniqueDigits(wrapper);
+	   int[] toPrint = ArrayWrapperConst.SORTED_ONE_INT_ARRAY_ASC;
 	   //when
-	   printer.printNumbersWithUniqueDigits(processedResult);
+	   printer.printData(wrapper, toPrint);
 	   //then
-	   String result = readFileData(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_FOR_DIGITS_ARRAY_PATH);
-	   Assert.assertEquals(Arrays.toString(processedResult), result);
+	   String result = readFileData(FilePaths.TEST_ARRAY_DATA_WRITER_FILE_PATH);
+	   Assert.assertEquals((wrapper.toString() + "\n" + Arrays.toString(toPrint) + "\n"), result);
     }
+
 }

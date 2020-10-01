@@ -6,6 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public interface DataPrinter {
-    void printData(ArrayWrapper wrapper) throws IOException;
-    void printNumbersWithUniqueDigits(Integer[] array) throws IOException;
+    void printData(ArrayWrapper wrapper, int[] arrayToPrint) throws IOException;
+//    void printNumbersWithUniqueDigits(Integer[] array) throws IOException;
 }
