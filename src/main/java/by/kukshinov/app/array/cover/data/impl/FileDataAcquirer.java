@@ -29,10 +29,16 @@ public class FileDataAcquirer implements DataAcquirer {
 
     @Override
     public boolean equals(Object o) {
+	   if (this == o) return true;
 	   if (o == null || getClass() != o.getClass()) return false;
-	   FileDataAcquirer that = (FileDataAcquirer) o;
-	   return Objects.equals(FILE_PATH, that.FILE_PATH);
+	   FileDataAcquirer acquirer = (FileDataAcquirer) o;
+	   return Objects.equals(FILE_PATH, acquirer.FILE_PATH) && ((acquirer.parser.getClass() == this.parser.getClass()));
     }
 
+    @Override
+    public int hashCode() {
+        int hash = FILE_PATH.length();
+	   return (hash * 31) + FILE_PATH.hashCode();
+    }
 }
 

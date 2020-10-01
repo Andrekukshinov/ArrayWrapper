@@ -76,18 +76,19 @@ public class ArrayWrapper {
 
     @Override
     public boolean equals(Object o) {
-//	   if (this == o) return true;
+	   if (this == o) return true;
 	   if (o == null || getClass() != o.getClass()) return false;
 	   ArrayWrapper wrapper = (ArrayWrapper) o;
-	   return Arrays.equals(innerArray, wrapper.innerArray);
+	   return innerArray.length == ((ArrayWrapper) o).innerArray.length && Arrays.equals(innerArray, wrapper.innerArray);
     }
 
     @Override
     public String toString() {
 	   return Arrays.toString(innerArray);
     }
-    //    @Override
-//    public int hashCode() {
-//	   return Arrays.hashCode(innerArray);
-//    }
+        @Override
+    public int hashCode() {
+        int hash = innerArray.length;
+	   return ((31 * hash) + Arrays.hashCode(innerArray));
+    }
 }

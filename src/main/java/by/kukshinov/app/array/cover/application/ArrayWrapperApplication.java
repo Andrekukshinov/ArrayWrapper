@@ -21,7 +21,6 @@ public class ArrayWrapperApplication {
         int[] res = wrapperServer.sortAscending(wrapper);
         ArrayWrapper sorted = new ArrayWrapper(res);
         Integer[] numbersWithUniqueDigits = wrapperServer.selectNumbersWithUniqueDigits(wrapper);
-        //TODO: 30.09.2020 rework equals toString hashcode
         DataPrinter printer = new FileDataPrinter(FilePaths.ARRAY_DATA_WRITER_FILE_PATH);
         printer.printData(sorted);
         printer.printNumbersWithUniqueDigits(numbersWithUniqueDigits);

@@ -31,7 +31,7 @@ public class ArrayWrapperProcessorTest {
 	   //when
 	   Integer[] result = filter.selectNumbersWithUniqueDigits(wrapper);
 	   //then
-	   Assert.assertTrue(Arrays.deepEquals(comparedArray, result));
+	   Assert.assertArrayEquals(comparedArray, result);
     }
     @Test
     public void testShouldSortArrayDescending() {
